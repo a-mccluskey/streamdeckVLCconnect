@@ -1,0 +1,34 @@
+{
+  "Actions": [
+    {
+      "Icon": "action/images/actionimage", 
+      "Name": "Example Action", 
+      "States": [
+        {
+          "Image": "action/images/action"
+        }
+      ], 
+      "Tooltip": "Functions to work with VLC media player", 
+      "UUID": "com.adm.vlc.action"
+    }
+  ], 
+  "SDKVersion": 2,
+  "Author": "Adam", 
+  "CodePath": "index.html", 
+  "PropertyInspectorPath": "propertyinspector/index.html", 
+  "Description": "Example description", 
+  "Name": "VLC interaction", 
+  "Icon": "action/images/action", 
+  "URL": "https://www.elgato.com/en/gaming/stream-deck", 
+  "Version": "0.0.1",
+  "OS": [
+    {
+        "Platform": "windows", 
+        "MinimumVersion" : "10"
+    }
+  ],
+  "Software": 
+    {
+        "MinimumVersion" : "4.1"
+  }
+}

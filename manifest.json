@@ -1,11 +1,11 @@
 {
   "Actions": [
     {
-      "Icon": "action/images/actionimage", 
-      "Name": "Example Action", 
+      "Icon": "action/images/vlc16x16", 
+      "Name": "VLC Action Selector", 
       "States": [
         {
-          "Image": "action/images/action"
+          "Image": "action/images/vlc-48"
         }
       ], 
       "Tooltip": "Functions to work with VLC media player", 
@@ -18,9 +18,9 @@
   "PropertyInspectorPath": "propertyinspector/index.html", 
   "Description": "Example description", 
   "Name": "VLC interaction", 
-  "Icon": "action/images/action", 
+  "Icon": "action/images/vlc16x16", 
   "URL": "https://www.elgato.com/en/gaming/stream-deck", 
-  "Version": "0.0.1",
+  "Version": "0.1",
   "OS": [
     {
         "Platform": "windows", 
@@ -29,6 +29,6 @@
   ],
   "Software": 
     {
-        "MinimumVersion" : "4.1"
+        "MinimumVersion" : "4.2"
   }
 }

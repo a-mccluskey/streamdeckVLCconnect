@@ -24,7 +24,7 @@
 
             <div class="sdpi-item">
                 <div class="sdpi-item-label">VLC Password</div>
-                <input id="mynameinput" class="sdpi-item-value" type="password" value="" />
+                <input id="vlcPassword" class="sdpi-item-value" type="password" value="" />
              </div>
 			 
 			 <div class="sdpi-item">
@@ -35,6 +35,8 @@
 					<option value="voldown10pc">Volume down 10%</option>
 					<option value="volup5pc">Volume up 5%</option>
 					<option value="voldown5pc">Volume down 5%</option>
+					<option value="next">Skip Track</option>
+					<option value="previous">Previous Track</option>
 				</select>
              </div>
 
@@ -61,7 +63,11 @@
         <script src="js/common_pi.js"></script>
         <script src="js/index_pi.js"></script>
 		<script>
+		/*$SD.on('sendToPropertyInspector', (jsonObj) => receivedDataFromPlugin(jsonObj));
 		
+		function receivedDataFromPlugin(jsonObj) {
+		 console.log("getting from plugin");
+		}*/
 		
 		
 		</script>

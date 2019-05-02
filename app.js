@@ -34,7 +34,6 @@ const action = {
     settings:{},
     onDidReceiveSettings: function(jsn) {
         console.log('%c%s', 'color: white; background: red; font-size: 15px;', '[app.js]onDidReceiveSettings:');
-
         this.settings = Utils.getProp(jsn, 'payload.settings', {});
         this.doSomeThing(this.settings, 'onDidReceiveSettings', 'orange');
 
@@ -50,6 +49,7 @@ const action = {
          this.setTitle(jsn);
     },
 
+
     /** 
      * The 'willAppear' event is the first event a key will receive, right before it gets
      * showed on your Stream Deck and/or in Stream Deck software.
@@ -59,9 +59,7 @@ const action = {
 
     onWillAppear: function (jsn) {
 		
-		
-		
-        /**
+		/**
          * "The willAppear event carries your saved settings (if any). You can use these settings
          * to setup your plugin or save the settings for later use. 
          * If you want to request settings at a later time, you can do so using the
@@ -80,10 +78,10 @@ const action = {
     },
 	sendRequest: function (commandSTR) {
 		//VLC requires a password, change this to accept a string from the PI
-		var vlcPass="";
+		var vlcPass="password";
 		
 		//set the address to VLC's webserver
-		//the file requests/status.xml accepts an arguement of command=
+		//the file /requests/status.json accepts an arguement of command=
 		var vlcAddress = "http://127.0.0.1:8080/requests/status.json?command=";
 		
 		//setup a httprequest
@@ -106,7 +104,6 @@ const action = {
 
     onKeyUp: function (jsn) {
 		var fullJSON = Utils.parseJson(this.sendRequest(""));
-		
 		var request = jsn.payload.settings.vlccommand;
 		switch(request) {
 			case "play":
@@ -128,6 +125,12 @@ const action = {
 				var newVol = this.changeVolume(fullJSON.volume, 5);
 				this.sendRequest("volume&val="+newVol);
 			break;
+			case "next":
+				this.sendRequest("pl_next");
+			break;
+			case "previous":
+				this.sendRequest("pl_previous");
+			break;
 			
 		}
 		
@@ -144,11 +147,6 @@ const action = {
          * (e.g. some value, which is not saved to settings) 
          * You can send this event from Property Inspector (see there for an example)
          */ 
-
-        const sdpi_collection = Utils.getProp(jsn, 'payload.sdpi_collection', {});
-        if (sdpi_collection.value && sdpi_collection.value !== undefined) {
-            this.doSomeThing({ [sdpi_collection.key] : sdpi_collection.value }, 'onSendToPlugin', 'fuchsia');            
-        }
     },
 
     /**
@@ -191,7 +189,7 @@ const action = {
      */
 
     doSomeThing: function(inJsonData, caller, tagColor) {
-        console.log('%c%s', `color: white; background: ${tagColor || 'grey'}; font-size: 15px;`, `[app.js]doSomeThing from: ${caller}`);
+        //console.log('%c%s', `color: white; background: ${tagColor || 'grey'}; font-size: 15px;`, `[app.js]doSomeThing from: ${caller}`);
         // console.log(inJsonData);
     }, 
 

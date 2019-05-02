@@ -764,7 +764,7 @@ const StreamDeck = (function () {
                 websocket = null;
             };
 
-            websocket = new WebSocket('ws://localhost:' + inPort);
+            websocket = new WebSocket('ws://127.0.0.1:' + inPort);
 			
 
             websocket.onopen = function () {
@@ -948,7 +948,8 @@ const SDApi = {
             console.log('-----SDApi.send-----');
             console.log('context', context);
             console.log(pl);
-            console.log(payload.payload);
+			console.log("payload: ", payload);
+            //console.log(payload.payload);
             console.log(JSON.stringify(payload.payload));
             console.log('-------');
         }
@@ -1059,6 +1060,7 @@ const SDApi = {
 
         getGlobalSettings: function (context, payload) {
             SDApi.send(context, 'getGlobalSettings', {});
+			//console.log("getting settings...");
         },
         
         setGlobalSettings: function (context, payload) {

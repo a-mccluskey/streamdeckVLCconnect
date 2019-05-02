@@ -53,6 +53,7 @@ $SD.on('connected', (jsn) => {
 
     console.log("connected");
     addDynamicStyles($SD.applicationInfo.colors, 'connectSocket');
+	
 
     /**
      * Current settings are passed in the JSON node
@@ -72,6 +73,10 @@ $SD.on('connected', (jsn) => {
     if (settings) {
         updateUI(settings);
     }
+	globalSettings = Utils.getProp(jsn, 'actionInfo.payload.globalSettings', false);
+	if (globalSettings) {
+        updateUI(globalSettings);
+    }
 });
 
 /**
@@ -81,6 +86,8 @@ $SD.on('connected', (jsn) => {
 
 $SD.on('sendToPropertyInspector', jsn => {
     const pl = jsn.payload;
+	
+	console.log("sending to PI");
     /**
      *  This is an example, how you could show an error to the user
      */
@@ -92,6 +99,8 @@ $SD.on('sendToPropertyInspector', jsn => {
             </details>
         </div>`;
     } else {
+		
+		
 
         /**
          *
@@ -101,7 +110,6 @@ $SD.on('sendToPropertyInspector', jsn => {
          */
     }
 });
-
 const updateUI = (pl) => {
     Object.keys(pl).map(e => {
         if (e && e != '') {
@@ -149,7 +157,6 @@ const updateUI = (pl) => {
 $SD.on('piDataChanged', (returnValue) => {
 
     console.log('%c%s', 'color: white; background: blue}; font-size: 15px;', 'piDataChanged');
-    console.log(returnValue);
 
     if (returnValue.key === 'clickme') {
 
@@ -167,9 +174,10 @@ $SD.on('piDataChanged', (returnValue) => {
         }
 
     } else {
+		//console.log(returnValue.key);
 
         /* SAVE THE VALUE TO SETTINGS */
-        saveSettings(returnValue);
+		saveSettings(returnValue);
 
         /* SEND THE VALUES TO PLUGIN */
         sendValueToPlugin(returnValue, 'sdpi_collection');
@@ -206,6 +214,7 @@ $SD.on('piDataChanged', (returnValue) => {
         }
     }
  }
+
 
  /**
   * 'sendValueToPlugin' is a wrapper to send some values to the plugin

@@ -34,6 +34,8 @@ let sdpiWrapper = document.querySelector('.sdpi-wrapper');
  */
 
 let settings;
+let globalSet;
+
 
  /**
   * The 'connected' event is the first event sent to Property Inspector, after it's instance
@@ -51,8 +53,9 @@ $SD.on('connected', (jsn) => {
      * drawing proper highlight-colors or progressbars.
      */
 
-    console.log("connected");
+    console.log("connected: ");
     addDynamicStyles($SD.applicationInfo.colors, 'connectSocket');
+	$SD.api.getGlobalSettings($SD.uuid);
 	
 
     /**
@@ -70,13 +73,17 @@ $SD.on('connected', (jsn) => {
      */
 
     settings = Utils.getProp(jsn, 'actionInfo.payload.settings', false);
+	console.log("setting inital PI...");
     if (settings) {
         updateUI(settings);
     }
-	globalSettings = Utils.getProp(jsn, 'actionInfo.payload.globalSettings', false);
-	if (globalSettings) {
-        updateUI(globalSettings);
-    }
+});
+$SD.on('didReceiveGlobalSettings', (jsn) => {
+	//console.log("changed: ", jsn);
+	settings['vlcPassword'] = jsn.payload.settings.vlcPassword;
+	//as js doesnt load things in the right order a lot of the time we have to update the up again
+	console.log("There are globals, so updating with them...");
+	updateUI(settings);
 });
 
 /**
@@ -157,6 +164,7 @@ const updateUI = (pl) => {
 $SD.on('piDataChanged', (returnValue) => {
 
     console.log('%c%s', 'color: white; background: blue}; font-size: 15px;', 'piDataChanged');
+	console.log(returnValue);
 
     if (returnValue.key === 'clickme') {
 
@@ -174,7 +182,7 @@ $SD.on('piDataChanged', (returnValue) => {
         }
 
     } else {
-		//console.log(returnValue.key);
+		//console.log(returnValue.key, ": Key -> Value: " returnValue.value);
 
         /* SAVE THE VALUE TO SETTINGS */
 		saveSettings(returnValue);

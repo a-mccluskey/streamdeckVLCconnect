@@ -949,7 +949,7 @@ const SDApi = {
             console.log('context', context);
             console.log(pl);
 			console.log("payload: ", payload);
-            //console.log(payload.payload);
+            console.log(payload.payload);
             console.log(JSON.stringify(payload.payload));
             console.log('-------');
         }

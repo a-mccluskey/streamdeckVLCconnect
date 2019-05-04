@@ -16,13 +16,13 @@
   "Author": "Adam", 
   "CodePath": "index.html", 
   "PropertyInspectorPath": "propertyinspector/index.html", 
-  "Description": "Example description", 
+  "Description": "Control the VLC media player using the streamdeck!", 
   "Name": "VLC interaction", 
   "Icon": "action/images/vlc16x16", 
   "Category": "VLC",
   "CategoryIcon":  "action/images/vlc16x16", 
-  "URL": "https://www.elgato.com/en/gaming/stream-deck", 
-  "Version": "0.1",
+  "URL": "https://github.com/a-mccluskey/streamdeckVLCconnect", 
+  "Version": "0.5",
   "OS": [
     {
         "Platform": "windows", 

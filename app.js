@@ -34,8 +34,15 @@ const action = {
     settings:{},
     onDidReceiveSettings: function(jsn) {
         console.log('%c%s', 'color: white; background: red; font-size: 15px;', '[app.js]onDidReceiveSettings:');
+		console.log(jsn.payload);
         this.settings = Utils.getProp(jsn, 'payload.settings', {});
         this.doSomeThing(this.settings, 'onDidReceiveSettings', 'orange');
+		var json = {
+				payload: this.settings,
+				settings: this.settings };
+		console.log("edited uuid: ",$SD.uuid,"global password set to: ", this.settings["vlcPassword"]);
+				
+			$SD.api.setGlobalSettings($SD.uuid, this.settings);
 
         /**
          * In this example we put a HTML-input element with id='mynameinput'
@@ -68,6 +75,54 @@ const action = {
          * 
          * $SD.api.getSettings(jsn.context);
         */
+		let e=jsn.payload.settings.vlccommand;
+		
+		/*This bit caused me some problems, so here's an explanation if anyone else is new to JS
+		
+		The code that changes the image is $SD.api.setImage(), but it requires  the image to be in base64
+		Which is what Utils.loadImage() does. But loadImage has a second arguement of a callback, which is 
+		what is run *after* the image has been loaded, doing loadImage(URL, return var) doesnt work as js sees 
+		loadImage as completed before its completed.
+		Ultimately callback is what what needs to call $SD.api, yes this makes it a little harder to 
+		understand if you're newer to js */
+		
+		switch(e) {
+		case "play":
+			//changebackground to action/images/play.png
+			var out = Utils.loadImage("action/images/play.png", 
+				function(output) { $SD.api.setImage(jsn.context, output); });
+		break;
+		case "volup10pc":
+			//changebackground to action/images/play.png
+			var out = Utils.loadImage("action/images/+10.png", 
+				function(output) { $SD.api.setImage(jsn.context, output); });
+		break;
+		case "voldown10pc":
+			//changebackground to action/images/play.png
+			var out = Utils.loadImage("action/images/-10.png", 
+				function(output) { $SD.api.setImage(jsn.context, output); });
+		break;
+		case "voldown5pc":
+			//changebackground to action/images/play.png
+			var out = Utils.loadImage("action/images/-5.png", 
+				function(output) { $SD.api.setImage(jsn.context, output); });
+		break;
+		case "volup5pc":
+			//changebackground to action/images/play.png
+			var out = Utils.loadImage("action/images/+5.png", 
+				function(output) { $SD.api.setImage(jsn.context, output); });
+		break;
+		case "next":
+			//changebackground to action/images/play.png
+			var out = Utils.loadImage("action/images/next.png", 
+				function(output) { $SD.api.setImage(jsn.context, output); });
+		break;
+		case "previous":
+			//changebackground to action/images/play.png
+			var out = Utils.loadImage("action/images/prev.png", 
+				function(output) { $SD.api.setImage(jsn.context, output); });
+		break;
+		}
         this.settings = jsn.payload.settings;
 
         // nothing in the settings pre-fill something just for demonstration purposes

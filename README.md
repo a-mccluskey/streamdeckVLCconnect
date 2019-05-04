@@ -1,7 +1,7 @@
 # streamdeckVLCconnect
 connects with VLC's web server to provide basic remote control
 
-V0.1
+V0.2 - now each control has its own icon, if any graphics designers are better than me feel free to fork
 
 currently requires the user to have their VLC password as "password", until I can get setGlobalSettings and getGlobalSettings to work
 

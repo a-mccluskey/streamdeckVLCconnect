@@ -19,6 +19,8 @@
   "Description": "Example description", 
   "Name": "VLC interaction", 
   "Icon": "action/images/vlc16x16", 
+  "Category": "VLC",
+  "CategoryIcon":  "action/images/vlc16x16", 
   "URL": "https://www.elgato.com/en/gaming/stream-deck", 
   "Version": "0.1",
   "OS": [

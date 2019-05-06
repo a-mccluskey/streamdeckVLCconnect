@@ -22,7 +22,7 @@
   "Category": "VLC",
   "CategoryIcon":  "action/images/vlc16x16", 
   "URL": "https://github.com/a-mccluskey/streamdeckVLCconnect", 
-  "Version": "0.5",
+  "Version": "0.5.1",
   "OS": [
     {
         "Platform": "windows", 

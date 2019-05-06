@@ -46,6 +46,7 @@ const action = {
 	recieveGlobals: function(jsn){
 		//store the (global)vlcPassword in the settings file, check it exists first, as we dont want it to overwrite an exising password.
 		if(jsn.payload.settings.hasOwnProperty("vlcPassword")) {
+			//we need to only specify ["vlcPassword"], as if we just use this.settings, vlccommand will be overwriten
 			this.settings["vlcPassword"] = jsn.payload.settings.vlcPassword; }
 	},
 
@@ -88,9 +89,9 @@ const action = {
 		commands are sent to the webserver address of 
 		http://127.0.0.1:8080/requests/status.json?command=pl_plause
 		where pl_pause is the command to be executed, we also reuse this code if we dont want to send a command but we want the results from the JSON
+		
 		for example the current volume*/
 		//VLC requires a password, change this to accept a string from the PI
-		console.log("attempting to use the global password: ", this.settings["vlcPassword"]);
 		var vlcPass=this.settings["vlcPassword"];
 		
 		//set the address to VLC's webserver

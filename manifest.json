@@ -25,6 +25,10 @@
   "Version": "0.5.1",
   "OS": [
     {
+        "Platform": "mac",
+        "MinimumVersion": "10.11"
+    },
+    {
         "Platform": "windows", 
         "MinimumVersion" : "10"
     }
